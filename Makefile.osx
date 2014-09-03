@@ -1,0 +1,27 @@
+
+#   TARGETS ...: TARGET-PATTERN: DEP-PATTERNS ...
+#             COMMANDS
+#
+# `$<' is the automatic variable that holds the name of the
+# prerequisite and `$@' is the automatic variable that holds the name of
+# the target; 
+
+
+# Basic stuff
+
+CC       = cc 
+LDFLAGS  = -framework OpenGL -framework GLUT -framework Cocoa
+PROGRAM  = glhello
+OBJ      = glhello.o 
+
+
+$(PROGRAM): $(OBJ) 
+	$(CC) $(CFLAGS) -o $(PROGRAM) $(OBJ)  $(LDFLAGS) 
+
+$(OBJ): %.o: %.c
+	$(CC) $(CFLAGS) $(INC) -c $< 
+
+clean:
+	/bin/rm -f *.o
+	/bin/rm -f $(PROGRAM)
+	/bin/rm -f core
